@@ -1,5 +1,6 @@
 from radar import RadarClient
 from typing import Tuple
+from ViewController.swift import viewDidLoad
 # initialize client with your project's secret key
 SECRET_KEY = r"prj_test_sk_94074d07a4f84ea1670d2ceabb5ae3a0706eab4d"
 PUBLIC_KEY = r'prj_test_pk_c4e161b1b185d10745b2b72e70aedbe837518436'
@@ -14,3 +15,12 @@ abdus_user = main_radar.users.get(id='5fe60d18097c9b007650866b',
 eesa_user = main_radar.users.get(id='5fe60e529b22530098cb47d6',
                                  userId='455F95AF-FB74-4909-B459-F046225FDAE6',
                                  deviceId='455F95AF-FB74-4909-B459-F046225FDAE6')
+
+def notify(id2:str):
+    if len(main_radar.geofences.list_users(id=id2)) > 1:
+        return True
+
+def search():
+    for geofence in main_radar.geofences.list():
+        if notify(geofence._id):
+            ViewController.swift.viewDidLoad
